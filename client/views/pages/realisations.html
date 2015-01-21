@@ -1,0 +1,27 @@
+<template name="realisations">
+    <div class="ui four column grid">
+        {{#each $mapped realisations }}
+            <div class="column">
+                {{> realisation }}
+            </div>
+        {{/each}}
+    </div>
+</template>
+
+
+<template name="realisation">
+    <div class="ui card fluid">
+        <div class="image">
+            <img src="{{ img }}">
+        </div>
+        <div class="content">
+            <div class="header">{{ title }}</div>
+            <div class="meta">
+            </div>
+
+            <div class="description">
+                {{ description }}
+            </div>
+        </div>
+    </div>
+</template>

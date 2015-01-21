@@ -1,0 +1,65 @@
+@import 'util/reset.import.less';
+
+// Mixins & Utilities
+@import 'util/helpers.import.less';
+@import 'util/lesshat.import.less';
+@import 'util/fontface.import.less';
+@import 'util/text.import.less';
+
+
+@background-bg-color : #fff;
+
+body{
+  background: @background-bg-color;
+}
+
+header{
+  background: #666;
+  text-align: center;
+
+  nav {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    color: #eee;
+
+    #logo{
+      color: inherit;
+      margin-top: 20px;
+      display: inline-block;
+      fill: currentColor;
+      stroke: currentColor;
+
+      p{
+        text-indent: -99999px;
+      }
+    }
+
+    ul{
+      li{
+        display: inline-block;
+        padding: 20px 20px;
+        a, a:hover{
+          color: inherit;
+        }
+      }
+    }
+
+    #underline{
+      .transition(all 0.2s);
+      position: relative;
+      background: @background-bg-color;
+      height: 7px;
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+
+section{
+  h1{
+    font-size: 5em;
+    text-align: center;
+    margin: 30px 0;
+  }
+}
