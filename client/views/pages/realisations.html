@@ -10,7 +10,7 @@
 
 
 <template name="realisation">
-    <div class="ui card fluid">
+    <a class="ui card fluid realisation" data-realisation="{{ _id }}">
         <div class="image">
             <img src="{{ img }}">
         </div>
@@ -23,5 +23,5 @@
                 {{ description }}
             </div>
         </div>
-    </div>
+    </a>
 </template>

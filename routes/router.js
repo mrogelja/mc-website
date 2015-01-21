@@ -27,6 +27,26 @@ Router.route('/realisations', {
   }
 });
 
+Router.route('/realisations/:_id', {
+  name: 'realisation',
+  waitOn: function() {
+    return Meteor.subscribe('realisations');
+  },
+  data: function () {
+    return Realisations.findOne({_id: this.params._id});
+  },
+  onAfterAction: function(){
+    Session.set("page_title", "Réalisations");
+
+    SEO.set({
+      title: "Réalisation",
+      meta: {
+        'description': "Bienvenue sur le site de MC."
+      }
+    });
+  }
+});
+
 Router.route('/blog', {
   name: 'blog',
   onAfterAction: function(){
