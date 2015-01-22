@@ -3,10 +3,10 @@ Template.basicLayout.rendered = function(){
 
   var selectedAnchor = this.$('header nav ul li a[href="'+currentPath+'"]');
 
-  setTimeout(function(){
+  Meteor.defer(function(){
     Session.set("nav_underline_width", selectedAnchor.width() + "px");
     Session.set("nav_underline_left", selectedAnchor.position().left + "px");
-  }, 100);
+  });
 };
 
 Template.basicLayout.events({
@@ -25,6 +25,12 @@ Template.basicLayout.helpers({
     return Session.get("nav_underline_left");
   },
   pageTitre: function(){
-    return Session.get("page_title");
+    var seo = SeoCollection.findOne({route_name : Router.current().route.getName(this)}) ;
+
+    if (seo) {
+      return seo.page_title;
+    } else {
+      return Session.get('page_title');
+    }
   }
 });

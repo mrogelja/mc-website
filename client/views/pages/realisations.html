@@ -1,27 +1,49 @@
 <template name="realisations">
-    <div class="ui four column grid">
+    <ul class="realisations {{#if zoom }}zooming{{/if}}">
         {{#each $mapped realisations }}
-            <div class="column">
-                {{> realisation }}
-            </div>
+        {{> realisation_thumb }}
         {{/each}}
-    </div>
+    </ul>
+</template>
+
+
+<template name="realisation_thumb">
+    <li class="realisation-thumb {{#if selected}}selected{{/if}} {{#if span}}span-{{span}}{{/if}}"
+        data-realisation="{{ _id }}">
+        <img class="thumb" src="{{ img }}">
+    </li>
 </template>
 
 
 <template name="realisation">
-    <a class="ui card fluid realisation" data-realisation="{{ _id }}">
-        <div class="image">
-            <img src="{{ img }}">
-        </div>
-        <div class="content">
-            <div class="header">{{ title }}</div>
-            <div class="meta">
-            </div>
+    <div class="realisation">
+        <div class="tools">
+            <a href="{{ pathFor route='realisations' }}">
+                <i class="icon reply"></i>
+            </a>
 
-            <div class="description">
-                {{ description }}
+            {{#if currentUser}}
+            <i class="edit icon" data-edit=""></i>
+            {{/if}}
+        </div>
+
+        <div class="thumb">
+            <div class="inner">
+                <img src="{{ img }}" alt="{{ title }}">
             </div>
         </div>
-    </a>
+
+        <div class="wrapper">
+            <div class="inner">
+
+                <div class="resume" contenteditable="{{#if editable}}true{{else}}false{{/if}}">
+                    {{ resume }}
+                </div>
+
+                <div class="description" contenteditable="{{#if editable}}true{{else}}false{{/if}}">
+                    {{ description }}
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

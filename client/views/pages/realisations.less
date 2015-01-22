@@ -1,0 +1,147 @@
+@import "../../stylesheets/util/lesshat.import.less";
+
+.realisations {
+  list-style: none;
+  text-align: center;
+  margin: 0 auto;
+
+  .realisation-thumb {
+    box-sizing: border-box;
+    width: 25%;
+    display: block;
+    float: left;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+
+    &.span-2 {
+      width: 50%;
+    }
+
+    &.span-3 {
+      width: 75%;
+    }
+
+    &.span-4 {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 992px) {
+      width: 50%;
+    }
+
+    .thumb {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .overlay {
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: all 0.4s ease;
+      z-index: -1;
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+}
+
+.realisation {
+  position: relative;
+
+  .tools{
+    width: 100%;
+    position: absolute;
+    top: -80px;
+    font-size: 3em;
+    color: #aaa;
+    padding: 0 30px;
+
+    .icon{
+      cursor: pointer;
+      &.edit {
+        float: right;
+      }
+    }
+
+    a{
+      color: inherit;
+    }
+  }
+
+  .thumb,
+  .wrapper {
+    box-sizing: border-box;
+    padding: 20px;
+  }
+
+  .thumb {
+    position: relative;
+    width: 50%;
+    float: right;
+
+    .inner {
+      position: fixed;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+  }
+
+  .wrapper {
+    width: 50%;
+    float: right;
+
+    .inner {
+      max-width: 720px;
+      margin: auto;
+
+      .resume {
+        font-size: 2em;
+        color: #aaa;
+      }
+
+      .description {
+        margin-top: 20px;
+
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .thumb {
+      width: 50%;
+    }
+
+    .wrapper {
+      width: 50%;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .thumb {
+      width: 100%;
+      .inner {
+        position: static;
+      }
+    }
+
+    .wrapper {
+      width: 100%;
+    }
+  }
+}

@@ -1,31 +1,63 @@
-Router.route('/', {
-  name: 'home',
-  onAfterAction: function(){
-    Session.set("page_title", "Accueil");
-    SEO.set({
-      title: "Accueil",
-      meta: {
-        'description': "Bienvenue sur le site de MC."
+////
+// Route HOME
+////
+
+Router.route('/', { name: 'home' });
+
+if (Meteor.isServer) {
+  SeoCollection.update(
+    {
+      route_name: 'home'
+    },
+    {
+      $set: {
+        route_name: 'home',
+        title: 'Accueil',
+        page_title : 'Hello !',
+        meta: {
+          'description': 'Bienvenue sur le site de MC.'
+        }
       }
-    });
-  }
-});
+    },
+    {
+      upsert: true
+    }
+  );
+}
+////
+// Route REALISATIONS
+////
 
 Router.route('/realisations', {
   name: 'realisations',
   waitOn: function() {
     return Meteor.subscribe('realisations');
   },
-  onAfterAction: function(){
-    Session.set("page_title", "Réalisations");
-    SEO.set({
-      title: "Réalisations",
-      meta: {
-        'description': "Bienvenue sur le site de MC."
-      }
-    });
+  onAfterAction: function() {
+    Session.set("selected_realisation", false);
   }
 });
+
+if (Meteor.isServer) {
+  SeoCollection.update(
+    {
+      route_name: 'realisations'
+    },
+    {
+      $set: {
+        route_name: 'realisations',
+        title: 'Réalisations',
+        page_title : 'Mes réalisations',
+        meta: {
+          'description': 'Toutes mes réalisations'
+        }
+      }
+    },
+    {
+      upsert: true
+    }
+  );
+}
 
 Router.route('/realisations/:_id', {
   name: 'realisation',
@@ -36,29 +68,43 @@ Router.route('/realisations/:_id', {
     return Realisations.findOne({_id: this.params._id});
   },
   onAfterAction: function(){
-    Session.set("page_title", "Réalisations");
+    Session.set("page_title", this.data().title);
 
     SEO.set({
-      title: "Réalisation",
+      title: this.data().title,
       meta: {
-        'description': "Bienvenue sur le site de MC."
+        'description': this.data().resume
       }
     });
   }
 });
 
-Router.route('/blog', {
-  name: 'blog',
-  onAfterAction: function(){
-    Session.set("page_title", "Blog");
-    SEO.set({
-      title: "Blog",
-      meta: {
-        'description': "Bienvenue sur le site de MC."
+////
+// Route BLOG
+////
+
+Router.route('/blog', { name: 'blog' });
+
+if (Meteor.isServer) {
+  SeoCollection.update(
+    {
+      route_name: 'blog'
+    },
+    {
+      $set: {
+        route_name: 'blog',
+        title: 'Blog',
+        page_title : 'Le blog',
+        meta: {
+          'description': 'Tout ce qui me passe dans les doigts'
+        }
       }
-    });
-  }
-});
+    },
+    {
+      upsert: true
+    }
+  );
+}
 
 Router.route('/contact', {
   name: 'contact',
@@ -72,6 +118,29 @@ Router.route('/contact', {
     });
   }
 });
+
+if (Meteor.isServer) {
+  SeoCollection.update(
+    {
+      route_name: 'contact'
+    },
+    {
+      $set: {
+        route_name: 'contact',
+        title: 'Contact',
+        page_title : 'Me contacter',
+        meta: {
+          'description': 'Tout ce qu\'il faut pour me contacter'
+        }
+      }
+    },
+    {
+      upsert: true
+    }
+  );
+}
+
+
 
 
 
