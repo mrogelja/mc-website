@@ -1,9 +1,11 @@
 <template name="realisations">
-    <ul class="realisations {{#if zoom }}zooming{{/if}}">
-        {{#each $mapped realisations }}
-        {{> realisation_thumb }}
-        {{/each}}
-    </ul>
+    <div class="page realisations">
+        <ul class="{{#if zoom }}zooming{{/if}}">
+            {{#each $mapped realisations }}
+            {{> realisation_thumb }}
+            {{/each}}
+        </ul>
+    </div>
 </template>
 
 
@@ -16,31 +18,34 @@
 
 
 <template name="realisation">
-    <div class="realisation">
+    <div class="page realisation">
         <div class="tools">
             <a href="{{ pathFor route='realisations' }}">
                 <i class="icon reply"></i>
             </a>
 
             {{#if currentUser}}
-            <i class="edit icon" data-edit=""></i>
+                {{#if editable}}
+                    <i class="icon unlock" data-stopedit=""></i>
+                {{else}}
+                    <i class="icon lock"   data-edit=""></i>
+                {{/if}}
             {{/if}}
         </div>
 
         <div class="thumb">
             <div class="inner">
-                <img src="{{ img }}" alt="{{ title }}">
+                <img src="{{ img_full }}" alt="{{ title }}">
             </div>
         </div>
 
         <div class="wrapper">
             <div class="inner">
-
-                <div class="resume" contenteditable="{{#if editable}}true{{else}}false{{/if}}">
+                <div class="resume" data-is="resume" contenteditable="{{#if editable}}true{{else}}false{{/if}}">
                     {{ resume }}
                 </div>
 
-                <div class="description" contenteditable="{{#if editable}}true{{else}}false{{/if}}">
+                <div class="description" data-is="description" contenteditable="{{#if editable}}true{{else}}false{{/if}}">
                     {{ description }}
                 </div>
             </div>

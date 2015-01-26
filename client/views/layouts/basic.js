@@ -1,3 +1,4 @@
+var ANIMATION_DURATION = 300;
 Template.basicLayout.rendered = function(){
   var currentPath = Router.current().route.path(this);
 

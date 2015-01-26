@@ -25,14 +25,24 @@ Template.realisation_thumb.helpers({
 
 
 Template.realisation.helpers({
-  editable: function(){
-
-  }
 });
+
+var savingTimer;
 
 Template.realisation.events({
   "click [data-edit]" : function(event){
     Meteor.call("setRealisationEditable", this._id, true);
+  },
+  "click [data-stopedit]" : function(event){
+    Meteor.call("setRealisationEditable", this._id, false);
+  },
+  "blur [contenteditable]" : function(event){
+    console.log('save');
+
+    var value = $(event.currentTarget).text(),
+      key = $(event.currentTarget).attr('data-is');
+
+    Meteor.call("updateRealisation", this._id, key, _.unescape(value.trim()));
   }
 });
 

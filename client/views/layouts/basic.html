@@ -35,9 +35,15 @@
     </header>
 
     <section>
-        <h1>{{ pageTitre }}</h1>
+        <h1 id="page-title">
+            <p>
+                {{ pageTitre }}
+            </p>
+        </h1>
 
-        {{> yield}}
+        <div id="page-content">
+            {{> yield}}
+        </div>
     </section>
 
     <footer>

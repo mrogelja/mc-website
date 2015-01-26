@@ -7,6 +7,7 @@ meteor-platform
 less
 jquery
 underscore
+markdown
 accounts-password
 aldeed:collection2
 iron:router
@@ -20,10 +21,16 @@ browser-policy
 #useraccounts:semantic-ui
 natestrauser:animate-css
 dburles:collection-helpers
-#meteorhacks:fast-render
+meteorhacks:fast-render
 
 nooitaf:semantic-ui
 houston:admin
-yogiben:admin
+#yogiben:admin
 accounts-ui
 gadicohen:sitemaps
+
+# Js librairies
+percolate:velocityjs
+jquery-waypoints
+
+

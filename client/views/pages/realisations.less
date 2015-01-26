@@ -1,9 +1,11 @@
 @import "../../stylesheets/util/lesshat.import.less";
 
 .realisations {
-  list-style: none;
-  text-align: center;
-  margin: 0 auto;
+  ul {
+    list-style: none;
+    text-align: center;
+    margin: 0 auto;
+  }
 
   .realisation-thumb {
     box-sizing: border-box;
@@ -68,7 +70,7 @@
 
     .icon{
       cursor: pointer;
-      &.edit {
+      &.lock, &.unlock {
         float: right;
       }
     }
@@ -90,8 +92,6 @@
     float: right;
 
     .inner {
-      position: fixed;
-
       img {
         display: block;
         width: 100%;
@@ -110,14 +110,14 @@
       margin: auto;
 
       .resume {
-        font-size: 2em;
+        font-size: 1.6em;
         color: #aaa;
       }
 
       .description {
         margin-top: 20px;
 
-        font-size: 1.5em;
+        font-size: 1.2em;
       }
     }
   }

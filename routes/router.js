@@ -35,6 +35,7 @@ Router.route('/realisations', {
   },
   onAfterAction: function() {
     Session.set("selected_realisation", false);
+    Session.set("page_title", "");
   }
 });
 
