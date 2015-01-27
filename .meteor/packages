@@ -32,5 +32,6 @@ gadicohen:sitemaps
 # Js librairies
 percolate:velocityjs
 jquery-waypoints
+perak:codemirror
 
 

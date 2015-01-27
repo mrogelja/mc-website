@@ -24,10 +24,8 @@ Template.realisation_thumb.helpers({
 });
 
 
-Template.realisation.helpers({
-});
-
-var savingTimer;
+Template.realisation.rendered = function(){
+};
 
 Template.realisation.events({
   "click [data-edit]" : function(event){
@@ -37,12 +35,31 @@ Template.realisation.events({
     Meteor.call("setRealisationEditable", this._id, false);
   },
   "blur [contenteditable]" : function(event){
-    console.log('save');
+    var value,
+      key = $(event.currentTarget).attr('data-is'),
+      type =  $(event.currentTarget).attr('data-type');
 
-    var value = $(event.currentTarget).text(),
-      key = $(event.currentTarget).attr('data-is');
+    if (type == 'rte') {
+      value = $(event.currentTarget).find('> textarea')[0].value;
+    } else {
+      value = $(event.currentTarget).text().trim();
+    }
 
-    Meteor.call("updateRealisation", this._id, key, _.unescape(value.trim()));
+    Meteor.call("updateRealisation", this._id, key, value);
+  },
+  "click .corner.label" : function(event){
+    $(event.currentTarget).popup({
+      hoverable: true,
+      position: 'top left'
+    }).popup('show');
+  }
+});
+
+Template.realisation.helpers({
+  editorOptions: {
+    lineNumbers: false,
+    lineWrapping: true,
+    mode: "markdown"
   }
 });
 

@@ -35,11 +35,13 @@
     </header>
 
     <section>
+        {{#if pageTitre}}
         <h1 id="page-title">
             <p>
                 {{ pageTitre }}
             </p>
         </h1>
+        {{/if}}
 
         <div id="page-content">
             {{> yield}}

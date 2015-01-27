@@ -69,14 +69,14 @@ Router.route('/realisations/:_id', {
     return Realisations.findOne({_id: this.params._id});
   },
   onAfterAction: function(){
-    Session.set("page_title", this.data().title);
-
-    SEO.set({
-      title: this.data().title,
-      meta: {
-        'description': this.data().resume
-      }
-    });
+    if(this.data()){
+      SEO.set({
+        title: this.data().title,
+        meta: {
+          'description': this.data().resume
+        }
+      });
+    }
   }
 });
 

@@ -19,6 +19,14 @@
 
 <template name="realisation">
     <div class="page realisation">
+        {{#if editable}}
+        <h1 class="title" data-is="title" data-type="text" contenteditable="{{#if editable}}true{{else}}false{{/if}}">
+            {{ title}}
+        </h1>
+        {{else}}
+        <h1 class="title">{{ title }}</h1>
+        {{/if}}
+
         <div class="tools">
             <a href="{{ pathFor route='realisations' }}">
                 <i class="icon reply"></i>
@@ -26,28 +34,49 @@
 
             {{#if currentUser}}
                 {{#if editable}}
-                    <i class="icon unlock" data-stopedit=""></i>
+                <i class="icon unlock" data-stopedit=""></i>
                 {{else}}
-                    <i class="icon lock"   data-edit=""></i>
+                <i class="icon lock" data-edit=""></i>
                 {{/if}}
             {{/if}}
         </div>
 
         <div class="thumb">
             <div class="inner">
-                <img src="{{ img_full }}" alt="{{ title }}">
+                {{#if editable}}
+                <div class="ui image">
+                    <a class="ui corner label left yellow" data-html="<div contenteditable='true'>{{ img_full }}</div>">
+                        <i class="save icon"></i>
+                    </a>
+                    <img src="{{ img_full }}" data-is="img_full" data-type="image">
+                </div>
+                {{else}}
+                <img src="{{ img_full }}" alt="{{ title }}"/>
+                {{/if }}
             </div>
         </div>
 
         <div class="wrapper">
             <div class="inner">
-                <div class="resume" data-is="resume" contenteditable="{{#if editable}}true{{else}}false{{/if}}">
+                {{#if editable}}
+                <div class="resume" data-is="resume" data-type="text" contenteditable="true">
                     {{ resume }}
                 </div>
-
-                <div class="description" data-is="description" contenteditable="{{#if editable}}true{{else}}false{{/if}}">
-                    {{ description }}
+                {{else}}
+                <div class="resume">
+                    {{ resume }}
                 </div>
+                {{/if}}
+
+                {{#if editable}}
+                <div class="description" data-is="description" data-type="rte" contenteditable="true">
+                    {{> CodeMirror id="md" options=editorOptions  code=description}}
+                </div>
+                {{else}}
+                <div class="description">
+                    {{#markdown}}{{ description }}{{/markdown}}
+                </div>
+                {{/if}}
             </div>
         </div>
     </div>

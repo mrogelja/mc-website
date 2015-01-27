@@ -5,8 +5,10 @@ Template.basicLayout.rendered = function(){
   var selectedAnchor = this.$('header nav ul li a[href="'+currentPath+'"]');
 
   Meteor.defer(function(){
-    Session.set("nav_underline_width", selectedAnchor.width() + "px");
-    Session.set("nav_underline_left", selectedAnchor.position().left + "px");
+    if(selectedAnchor.length > 0) {
+      Session.set("nav_underline_width", selectedAnchor.width() + "px");
+      Session.set("nav_underline_left", selectedAnchor.position().left + "px");
+    }
   });
 };
 
