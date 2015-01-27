@@ -40,7 +40,7 @@ Template.realisation.events({
       type =  $(event.currentTarget).attr('data-type');
 
     if (type == 'rte') {
-      value = $(event.currentTarget).find('> textarea')[0].value;
+      value = $(event.currentTarget).find('textarea')[0].value;
     } else {
       value = $(event.currentTarget).text().trim();
     }
@@ -54,13 +54,4 @@ Template.realisation.events({
     }).popup('show');
   }
 });
-
-Template.realisation.helpers({
-  editorOptions: {
-    lineNumbers: false,
-    lineWrapping: true,
-    mode: "markdown"
-  }
-});
-
 

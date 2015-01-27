@@ -59,7 +59,7 @@
         <div class="wrapper">
             <div class="inner">
                 {{#if editable}}
-                <div class="resume" data-is="resume" data-type="text" contenteditable="true">
+                <div class="resume write icon" data-is="resume" data-type="text" contenteditable="true">
                     {{ resume }}
                 </div>
                 {{else}}
@@ -70,7 +70,7 @@
 
                 {{#if editable}}
                 <div class="description" data-is="description" data-type="rte" contenteditable="true">
-                    {{> CodeMirror id="md" options=editorOptions  code=description}}
+                    {{> markdown_editor data=description }}
                 </div>
                 {{else}}
                 <div class="description">
