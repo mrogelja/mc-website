@@ -7,7 +7,7 @@ meteor-platform
 less
 jquery
 underscore
-markdown
+chuangbo:marked
 accounts-password
 aldeed:collection2
 iron:router
@@ -33,5 +33,4 @@ gadicohen:sitemaps
 percolate:velocityjs
 jquery-waypoints
 perak:codemirror
-
-
+momentjs:moment

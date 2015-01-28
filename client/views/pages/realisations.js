@@ -10,12 +10,14 @@ Template.realisations.helpers({
   }
 });
 
+
 Template.realisation_thumb.events({
   "click [data-realisation]" : function(event){
     Session.set("selected_realisation", this._id);
     Router.go('realisation', { _id : this._id});
   }
 });
+
 
 Template.realisation_thumb.helpers({
   selected: function(){
@@ -25,7 +27,17 @@ Template.realisation_thumb.helpers({
 
 
 Template.realisation.rendered = function(){
+  $('.ui.checkbox').checkbox();
 };
+
+Template.realisation.helpers({
+  editable : function(){
+    return this.editable && Meteor.userId();
+  },
+  publishedAt: function(){
+    return moment(this.published_at).format("YYYY-MM-DD");
+  }
+});
 
 Template.realisation.events({
   "click [data-edit]" : function(event){
@@ -52,6 +64,27 @@ Template.realisation.events({
       hoverable: true,
       position: 'top left'
     }).popup('show');
+  },
+
+  "change input" : function(event){
+    var value, key = $(event.currentTarget).attr('data-is');
+
+    switch (event.currentTarget.type){
+      case "checkbox":
+        value = event.currentTarget.checked;
+        break;
+
+      case "date":
+        value = new Date(event.currentTarget.value);
+        break;
+
+      default:
+        value = event.currentTarget.value;
+    }
+
+    if (key) {
+      Meteor.call("updateRealisation", this._id, key, value);
+    }
   }
 });
 

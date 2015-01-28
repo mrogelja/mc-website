@@ -25,7 +25,7 @@ Template.markdown_editor.events({
       case 'italic':
         selection = "*" + selection + "*";
         break;
-      case 'underline':
+      case 'strikethrough':
         selection = "~~" + selection + "~~";
         break;
       case 'quote':

@@ -87,7 +87,8 @@
   }
 
   .thumb,
-  .wrapper {
+  .wrapper,
+  .settings{
     box-sizing: border-box;
     padding: 20px;
   }
@@ -116,12 +117,12 @@
       margin: auto;
 
       .resume {
+        margin-bottom: 20px;
         font-size: 1.6em;
         color: #aaa;
       }
 
       .description {
-        margin-top: 20px;
         font-size: 1.2em;
         height: auto;
 
@@ -159,7 +160,32 @@
     }
   }
 
-  *[contenteditable="true"]{
-    border: #fff788 solid 1px;
+  &.editing{
+    *[contenteditable="true"]{
+      border: #fff788 solid 1px;
+    }
+
+    label{
+      display: inline-block;
+      color: #999;
+      margin-bottom: 10px;
+    }
+
+    .thumb{
+      width: 30%;
+
+      @media screen and (max-width: 992px) {
+        width: 50%;
+      }
+    }
+
+    .settings{
+      width: 20%;
+      float: right;
+
+      @media screen and (max-width: 992px) {
+        width: 50%;
+      }
+    }
   }
 }

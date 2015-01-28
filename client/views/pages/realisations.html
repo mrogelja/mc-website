@@ -18,7 +18,7 @@
 
 
 <template name="realisation">
-    <div class="page realisation">
+    <div class="page realisation {{#if editable}}editing{{/if}}">
         {{#if editable}}
         <h1 class="title" data-is="title" data-type="text" contenteditable="{{#if editable}}true{{else}}false{{/if}}">
             {{ title}}
@@ -41,15 +41,57 @@
             {{/if}}
         </div>
 
+        {{#if editable}}
+        <div class="settings">
+            <div class="inner">
+                <label>Publication</label>
+                <form class="ui form">
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input id="published" type="checkbox" data-is="published" checked="{{#if published }}checked{{/if}}">
+                            <label for="published">{{#if published }}Publié{{else}}Brouillon{{/if}}</label>
+                        </div>
+                    </div>
+                </form>
+
+                <label>Date de publication</label>
+                <form class="ui form">
+                    <div class="field">
+                        <input type="date" data-is="published_at" value="{{ publishedAt }}">
+                    </div>
+                </form>
+            </div>
+        </div>
+        {{/if}}
+
         <div class="thumb">
             <div class="inner">
                 {{#if editable}}
+                <label>Imagette</label>
+                <div class="ui image">
+                    <a class="ui corner label left yellow" data-html="<div contenteditable='true'>{{ img_ }}</div>">
+                        <i class="save icon"></i>
+                    </a>
+                    <img src="{{ img }}" data-is="img" data-type="image">
+                </div>
+                <form class="ui form">
+                    <div class="field">
+                        <input type="text" data-is="img" value="{{ img }}">
+                    </div>
+                </form>
+
+                <label>Image</label>
                 <div class="ui image">
                     <a class="ui corner label left yellow" data-html="<div contenteditable='true'>{{ img_full }}</div>">
                         <i class="save icon"></i>
                     </a>
                     <img src="{{ img_full }}" data-is="img_full" data-type="image">
                 </div>
+                <form class="ui form">
+                    <div class="field">
+                        <input type="text" data-is="img_full" value="{{ img_full }}">
+                    </div>
+                </form>
                 {{else}}
                 <img src="{{ img_full }}" alt="{{ title }}"/>
                 {{/if }}
@@ -59,6 +101,7 @@
         <div class="wrapper">
             <div class="inner">
                 {{#if editable}}
+                <label>Résumé</label>
                 <div class="resume write icon" data-is="resume" data-type="text" contenteditable="true">
                     {{ resume }}
                 </div>
@@ -69,6 +112,7 @@
                 {{/if}}
 
                 {{#if editable}}
+                <label>Description</label>
                 <div class="description" data-is="description" data-type="rte" contenteditable="true">
                     {{> markdown_editor data=description }}
                 </div>

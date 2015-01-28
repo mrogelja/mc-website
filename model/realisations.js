@@ -11,7 +11,7 @@ Meteor.methods({
   updateRealisation: function(id, key, value){
     check(id, String);
     check(key, String);
-    check(value, String);
+    check(value, Match.Any);
 
     var updateSet = {};
     updateSet[key] = value;
