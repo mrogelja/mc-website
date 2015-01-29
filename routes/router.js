@@ -87,9 +87,7 @@ Router.route('/realisations/:_id', {
 Router.route('/blog', {
   name: 'blog',
   waitOn: function() {
-    var r = Meteor.subscribe('posts');
-    console.log(r);
-    return r;
+    return Meteor.subscribe('posts');
   },
   onAfterAction: function() {
     Session.set("page_title", "");
