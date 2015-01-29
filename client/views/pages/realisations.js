@@ -54,6 +54,19 @@ Template.realisation.events({
   "click [data-stopedit]" : function(event){
     Meteor.call("setRealisationEditable", this._id, false);
   },
+  "click [data-modal]" : function (event){
+     var $this = this;
+     $($(event.currentTarget).attr('data-modal')).modal({
+       onDeny : function() {
+         switch ($(this).attr("data-action")) {
+           case "delete":
+             Meteor.call("deleteRealisation", $this._id);
+             Router.go('realisations');
+             break;
+         }
+       }
+     }).modal('show');
+  },
   "blur [contenteditable]" : function(event){
     var value,
       key = $(event.currentTarget).attr('data-is'),
@@ -93,6 +106,9 @@ Template.realisation.events({
     if (key) {
       Meteor.call("updateRealisation", this._id, key, value);
     }
+  },
+  "click .ui.modal *[data-delete]" : function(event){
+    console.log("coucou");
   }
 });
 

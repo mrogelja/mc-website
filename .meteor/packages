@@ -12,7 +12,7 @@ accounts-password
 aldeed:collection2
 iron:router
 raix:handlebar-helpers
-matteodem:easy-security
+#matteodem:easy-security
 #audit-argument-checks
 fastclick
 zimme:iron-router-active

@@ -1,11 +1,14 @@
+@import "../../stylesheets/util/lesshat.import.less";
+
 .editor {
   position: relative;
 
   .shortcuts {
     &.ui.icon.menu{
-      width: 101%;
+      width: calc(~"100% + 6px");
       margin: -3px 0 20px -3px;
       background: #fafafa;
+      .box-shadow(0 2px 1px 0px #ddd);
     }
 
     .icon{
