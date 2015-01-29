@@ -1,0 +1,154 @@
+<template name="blog">
+    <div class="page blog">
+        {{#if currentUser}}
+        <div class="tools">
+            <i class="icon add" data-add=""></i>
+        </div>
+        {{/if}}
+
+        <ul>
+            {{#each $mapped posts }}
+            {{> post_thumb }}
+            {{/each}}
+        </ul>
+    </div>
+</template>
+
+
+<template name="post_thumb">
+    <li class="post-thumb" data-post="{{ _id }}">
+        <div class="separator">
+            <i class="icon sun"></i>
+        </div>
+
+        <div class="thumb" style="background-image: url('{{ img }}')"></div>
+        <div class="title">{{ title }}</div>
+        <div class="resume">{{ resume }}</div>
+    </li>
+</template>
+
+
+<template name="post">
+    <div class="page post {{#if editable}}editing{{/if}}">
+        {{#if editable}}
+        <h1 class="title" data-is="title" data-type="text" contenteditable="{{#if editable}}true{{else}}false{{/if}}">
+            {{ title}}
+        </h1>
+        {{else}}
+        <h1 class="title">{{ title }}</h1>
+        {{/if}}
+
+        <div class="tools">
+            <a href="{{ pathFor route='blog' }}">
+                <i class="icon reply"></i>
+            </a>
+
+            {{#if currentUser}}
+            {{#if editable}}
+            <i class="icon unlock" data-stopedit=""></i>
+            {{else}}
+            <i class="icon lock" data-edit=""></i>
+            {{/if}}
+            {{/if}}
+        </div>
+
+        {{#if editable }}
+        <div class="settings">
+            <div class="inner">
+                <label class="info">Publication</label>
+
+                <form class="ui form">
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input id="published" type="checkbox" data-is="published"
+                                   checked="{{#if published }}checked{{/if}}">
+                            <label for="published">{{#if published }}Publié{{else}}Brouillon{{/if}}</label>
+                        </div>
+                    </div>
+                </form>
+
+                <label class="info">Date de publication</label>
+
+                <form class="ui form">
+                    <div class="field">
+                        <input type="date" data-is="published_at" value="{{ publishedAt }}">
+                    </div>
+                </form>
+
+                <label class="info">Image</label>
+
+                <div class="ui image">
+                    <form class="ui form">
+                        <div class="field">
+                            <input type="text" data-is="img" value="{{ img }}">
+                        </div>
+                    </form>
+                    <img src="{{ img }}" data-is="img" data-type="image">
+                </div>
+
+                <label class="info danger">Zone danger !</label>
+
+                <div>
+                    <div class="negative ui button" data-modal="#delete-modal">
+                        Supprimer
+                    </div>
+
+                    <div id="delete-modal" class="ui modal" data-action="delete">
+                        <div class="content">
+                            Êtes-vous sûr ?
+                        </div>
+
+                        <div class="actions">
+                            <div class="ui black button">
+                                Non !!
+                            </div>
+                            <div class="ui negative right labeled icon button">
+                                Oui supprimer !
+                                <i class="checkmark icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+        <div class="content">
+            <div class="image">
+                <div class="inner">
+                    {{#unless editable}}
+                    <img src="{{ img_full }}" alt="{{ title }}"/>
+                    {{/unless }}
+                </div>
+            </div>
+
+            <div class="wrapper">
+                <div class="inner">
+                    {{#if editable}}
+                    <label class="info">Résumé</label>
+
+                    <div class="resume write icon" data-is="resume" data-type="text" contenteditable="true">
+                        {{ resume }}
+                    </div>
+                    {{else}}
+                    <div class="resume">
+                        {{ resume }}
+                    </div>
+                    {{/if}}
+
+                    {{#if editable}}
+                    <label class="info">Description</label>
+
+                    <div class="description" data-is="description" data-type="rte" contenteditable="true">
+                        {{> markdown_editor data=description }}
+                    </div>
+                    {{else}}
+                    <div class="description">
+                        {{#markdown}}{{{ description }}}{{/markdown}}
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

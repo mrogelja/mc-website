@@ -10,4 +10,8 @@ Meteor.startup(function () {
   if (Realisations.find().count() == 0){
     loadFixture(Fixtures['realisations'], Realisations);
   }
+
+  if (Posts.find().count() == 0){
+    loadFixture(Fixtures['posts'], Posts);
+  }
 });

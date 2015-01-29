@@ -6,15 +6,15 @@
 @import 'util/fontface.import.less';
 @import 'util/text.import.less';
 
-
 @background-bg-color : #fff;
+@header-bg-color : #666;
 
 body{
   background: @background-bg-color;
 }
 
 header{
-  background: #666;
+  background: @header-bg-color;
   text-align: center;
 
   nav {
@@ -27,11 +27,59 @@ header{
       color: inherit;
       margin-top: 20px;
       display: inline-block;
-      fill: currentColor;
-      stroke: currentColor;
+      width: 100px;
+      height: 100px;
 
       p{
         text-indent: -99999px;
+      }
+
+      .flip-container {
+        perspective: 1000;
+      }
+
+      .flip-container:hover .flipper {
+        .transform(rotate3d(0, 1, 0, 180deg));
+      }
+
+      .flipper {
+        .transition(0.6s);
+        transform-style: preserve-3d;
+        position: relative;
+      }
+
+      .front, .back {
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+      }
+
+      .front {
+        z-index: 2;
+        .transform(rotate3d(0, 1, 0, 0deg));
+        fill: currentColor;
+        stroke: currentColor;
+      }
+
+      .back {
+        .transform(rotate3d(0, 1, 0, 180deg));
+        fill: currentColor;
+        stroke: currentColor;
+
+        span{
+          display: block;
+          width: 100%;
+          text-align: vertical;
+          top: 50%;
+          position: absolute;
+          color: @header-bg-color;
+          font-variant: small-caps;
+          font-weight: bold;
+          font-size: 20px;
+        }
       }
     }
 

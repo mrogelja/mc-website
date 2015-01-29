@@ -84,7 +84,37 @@ Router.route('/realisations/:_id', {
 // Route BLOG
 ////
 
-Router.route('/blog', { name: 'blog' });
+Router.route('/blog', {
+  name: 'blog',
+  waitOn: function() {
+    var r = Meteor.subscribe('posts');
+    console.log(r);
+    return r;
+  },
+  onAfterAction: function() {
+    Session.set("page_title", "");
+  }
+});
+
+Router.route('/blog/:_id', {
+  name: 'post',
+  waitOn: function() {
+    return Meteor.subscribe('posts');
+  },
+  data: function () {
+    return Posts.findOne({_id: this.params._id});
+  },
+  onAfterAction: function(){
+    if(this.data()){
+      SEO.set({
+        title: this.data().title,
+        meta: {
+          'description': this.data().resume
+        }
+      });
+    }
+  }
+});
 
 if (Meteor.isServer) {
   SeoCollection.update(
