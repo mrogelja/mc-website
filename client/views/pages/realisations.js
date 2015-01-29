@@ -10,6 +10,14 @@ Template.realisations.helpers({
   }
 });
 
+Template.realisations.events({
+  "click [data-add]" : function(){
+    Meteor.call("addRealisation", function(err, data){
+      Router.go('realisation', { _id : data});
+    });
+  }
+});
+
 
 Template.realisation_thumb.events({
   "click [data-realisation]" : function(event){

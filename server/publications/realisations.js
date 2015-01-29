@@ -1,5 +1,4 @@
 Meteor.publish("realisations", function () {
-//  Meteor._sleepForMs(1000);
   if (!this.userId) {
     return Realisations.find({
       $and: [

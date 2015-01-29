@@ -17,5 +17,14 @@ Meteor.methods({
     updateSet[key] = value;
 
     Realisations.update(id, {$set: updateSet});
+  },
+
+  addRealisation: function(){
+    return Realisations.insert({
+      title: "Nouvelle réalisation",
+      img: "/images/wireframe/dummy.png",
+      img_full: "/images/wireframe/dummy.png",
+      editable: true
+    });
   }
 });

@@ -1,5 +1,11 @@
 <template name="realisations">
     <div class="page realisations">
+        {{#if currentUser}}
+        <div class="tools">
+            <i class="icon add" data-add=""></i>
+        </div>
+        {{/if}}
+
         <ul class="{{#if zoom }}zooming{{/if}}">
             {{#each $mapped realisations }}
             {{> realisation_thumb }}
