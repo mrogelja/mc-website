@@ -47,13 +47,25 @@
         </nav>
     </header>
 
-    <section>
+    <section class="main">
         {{#if pageTitre}}
-        <h1 id="page-title">
-            <p>
-                {{ pageTitre }}
-            </p>
-        </h1>
+        <div id="page-title">
+            <h1>
+                <p>
+                    {{> page_element pageId=page._id data=pageTitre key="title" }}
+                </p>
+            </h1>
+
+            <div class="tools">
+                {{#if currentUser}}
+                    {{#if pageEditable }}
+                    <i class="icon unlock" data-page-stopedit=""></i>
+                    {{else}}
+                    <i class="icon lock" data-page-edit=""></i>
+                    {{/if}}
+                {{/if}}
+            </div>
+        </div>
         {{/if}}
 
         <div id="page-content">

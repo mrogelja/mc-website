@@ -1,0 +1,35 @@
+.page.home{
+  .image,
+  .presentation{
+    box-sizing: border-box;
+    padding: 20px;
+    float: left;
+  }
+
+  .image{
+    width: 40%;
+    img{
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .presentation{
+    width: 60%;
+    font-size: 1.8rem;
+
+    @media screen and (max-width: 992px) {
+      font-size: 1.4rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+  }
+
+}

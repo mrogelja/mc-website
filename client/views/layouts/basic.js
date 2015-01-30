@@ -17,8 +17,15 @@ Template.basicLayout.events({
     var anchor = $(event.target);
     Session.set("nav_underline_width", anchor.width() + "px");
     Session.set("nav_underline_left", anchor.position().left + "px");
+  },
+  "click [data-page-edit]": function() {
+    Session.set("page_editable", true);
+  },
+  "click [data-page-stopedit]": function() {
+    Session.set("page_editable", false);
   }
 });
+
 
 Template.basicLayout.helpers({
   navUnderlineWidth: function () {
@@ -28,12 +35,18 @@ Template.basicLayout.helpers({
     return Session.get("nav_underline_left");
   },
   pageTitre: function(){
-    var seo = SeoCollection.findOne({route_name : Router.current().route.getName(this)}) ;
+    var page = Pages.findOne({route : Router.current().route.getName()}) ;
 
-    if (seo) {
-      return seo.page_title;
+    if (page) {
+      return page.title;
     } else {
       return Session.get('page_title');
     }
+  },
+  pageEditable: function(){
+    return Session.get("page_editable");
+  },
+  page: function(){
+    return Iron.controller().state.get('page');
   }
 });

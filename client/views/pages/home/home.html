@@ -1,6 +1,11 @@
 <template name="home">
     <div class="page home">
-        <h2>Bonjour !</h2>
-        <p>Je suis MC...</p>
+        <div class="image">
+            <img src="/images/home/rabbit.jpg" alt="Hello !">
+        </div>
+
+        <div class="presentation">
+            {{> page_element pageId=page._id key='elements.presentation' data=page.elements.presentation}}
+        </div>
     </div>
 </template>
