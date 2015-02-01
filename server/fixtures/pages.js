@@ -3,7 +3,7 @@ Fixtures = typeof Fixtures !== "undefined" ? Fixtures : {};
 
 Fixtures.pages = [
   {
-    "route_name" : "home",
+    "route" : "home",
     "title" : "Hello !",
     "elements"  : {
       "img"   : "/images/home/rabbit.jpg",
