@@ -98,6 +98,7 @@ Template.realisation.events({
     }
 
     if (key) {
+      console.log(value);
       Meteor.call("updateRealisation", this._id, key, value);
     }
   }

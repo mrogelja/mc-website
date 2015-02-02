@@ -32,8 +32,20 @@ Template.markdown_editor.events({
         selection = ">" + selection;
         break;
       case 'orderedlist':
-        console.log()
         selection = " * " + selection.replace(/\n/g, "\n * ");
+        break;
+      case 'image':
+        var $this = this;
+        $($(event.currentTarget).attr('data-modal')).modal({
+          onDeny : function() {
+            switch ($(this).attr("data-action")) {
+              case "delete":
+                Meteor.call("deletePost", $this._id);
+                Router.go('blog');
+                break;
+            }
+          }
+        }).modal('show');
         break;
     }
 

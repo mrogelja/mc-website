@@ -18,4 +18,11 @@ Meteor.startup(function () {
   if (Pages.find().count() == 0){
     loadFixture(Fixtures['pages'], Pages);
   }
+//
+//  exec = Npm.require('child_process').exec;
+//
+//  exec('find . -name "*.*"', function(error,stdout,stderr){
+//    console.log(error);
+//    console.log(stdout);
+//  });
 });
