@@ -2,14 +2,24 @@ Meteor.subscribe('images');
 
 Template.filesystem.helpers({
    images: function(){
-     console.log(Images.find().count());
      return Images.find();
-   }
+   },
+
+  selected: function(){
+    return this._id == Session.get("selected_image");
+  },
+
+  isSelection: function(){
+    return Session.get("selected_image") != false;
+  }
 });
 
+Template.filesystem.rendered = function(){
+  Session.set("selected_image", null);
+};
+
 Template.filesystem.events({
-  'dropped #dropzone': function(event, temp) {
-    console.log('files dropped');
+  'dropped #dropzone': function(event) {
     FS.Utility.eachFile(event, function(file) {
       Images.insert(file, function (err, fileObj) {
         console.log(fileObj);
@@ -17,5 +27,8 @@ Template.filesystem.events({
         //kicked off the data upload using HTTP
       });
     });
+  },
+  'click tr.item' : function(event, tmpl){
+    Session.set("selected_image", this._id);
   }
 });

@@ -13,6 +13,11 @@ Template.markdown_editor.rendered = function() {
   });
 }
 
+Template.markdown_editor.helpers({
+  selectedImage: function(){
+    return !!Session.get("selected_image");
+  }
+});
 
 Template.markdown_editor.events({
   "click .shortcuts .icon" : function(event, tmpl){
@@ -35,14 +40,12 @@ Template.markdown_editor.events({
         selection = " * " + selection.replace(/\n/g, "\n * ");
         break;
       case 'image':
-        var $this = this;
         $($(event.currentTarget).attr('data-modal')).modal({
-          onDeny : function() {
-            switch ($(this).attr("data-action")) {
-              case "delete":
-                Meteor.call("deletePost", $this._id);
-                Router.go('blog');
-                break;
+          onApprove : function() {
+            var image = Images.findOne({_id : Session.get("selected_image")});
+
+            if(image){
+              tmpl.editor.replaceSelection('![](' + image.getFileRecord().url()+ ')');
             }
           }
         }).modal('show');
@@ -50,5 +53,7 @@ Template.markdown_editor.events({
     }
 
     tmpl.editor.replaceSelection(selection);
+    event.stopPropagation();
+    return false;
   }
 });

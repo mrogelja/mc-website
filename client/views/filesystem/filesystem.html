@@ -3,7 +3,6 @@
         <table class="ui unstackable table">
             <thead>
             <tr>
-                <th class="one wide"></th>
                 <th class="five wide">Nom</th>
                 <th class="three wide">Aperçu</th>
                 <th class="three wide">Taille</th>
@@ -12,12 +11,7 @@
             </thead>
             <tbody>
             {{#each images}}
-            <tr>
-                <td class="collapsing">
-                    <div class="ui fitted checkbox">
-                        <input type="checkbox"> <label></label>
-                    </div>
-                </td>
+            <tr class="item {{#if selected }}active{{/if}}">
                 <td>{{ this.name }}</td>
                 <td><img style="width: 50px" class="img-responsive" src="{{ this.url }}"></td>
                 <td>{{ this.size }}</td>
@@ -25,10 +19,29 @@
             </tr>
             {{/each}}
             </tbody>
+
+            <tfoot class="full-width">
+            <tr>
+                <th colspan="4">
+                    <div class="ui right">
+                        <div class="ui buttons">
+                            <div class="ui positive right labeled icon button">
+                                Télécharger
+                                <i class="add icon"></i>
+                            </div>
+                            <div class="or"></div>
+                            <div class="ui button">
+                                <div id="dropzone" class="dropzone">
+                                    <div style="text-align: center; color: gray;">Glisser un fichier ici pour téléverser.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
         </table>
 
-        <div id="dropzone" class="dropzone">
-            <div style="text-align: center; color: gray;">Glisser un fichier ici pour téléverser.</div>
-        </div>
+
     </div>
 </template>
