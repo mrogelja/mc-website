@@ -27,7 +27,7 @@ Template.markdown_editor.helpers({
 
 Template.markdown_editor.events({
   "click .shortcuts .icon" : function(event, tmpl){
-    var selection = tmpl.editor.getSelection();
+    var selection = tmpl.editor.getSelection(), alt;
 
     switch ($(event.currentTarget).attr('data-do')) {
       case 'bold':
@@ -51,10 +51,14 @@ Template.markdown_editor.events({
             var image = Images.findOne({_id : Session.get("selected_image")});
 
             if(image){
-              tmpl.editor.replaceSelection('![](' + image.getFileRecord().url()+ ')');
+              tmpl.editor.replaceSelection('![' + alt + '](' + image.getFileRecord().url()+ ')');
             }
           }
         }).modal('show');
+
+        $("input[name='image_alt']").on('change', function(event){
+          alt = event.currentTarget.value;
+        });
         break;
     }
 
