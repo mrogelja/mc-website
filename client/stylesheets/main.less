@@ -124,6 +124,40 @@ section {
     h4{ font-size: 1.6em; }
     h5{ font-size: 1.4em; }
     h6{ font-size: 1.2em; }
+
+    ul{
+      padding: 20px 0 20px 20px;
+
+      li{
+        margin-bottom: 20px;
+        list-style: square;
+      }
+    }
+
+    strong{
+      font-weight: bold;
+    }
+
+    em{
+      font-style: italic;
+    }
+
+    blockquote{
+      &:before{
+        font-family: Icons;
+        content: "\f10d";
+        float: left;
+        font-size: 5em;
+        margin-right: 30px;
+        color: #bbb;
+      }
+
+      background: #fafafa;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+      font-style: italic;
+    }
   }
 
   #page-title{

@@ -11,7 +11,13 @@ Template.markdown_editor.rendered = function() {
   this.editor.on("change", function(doc) {
     textarea.value = doc.getValue();
   });
-}
+
+  this.$('.ui.sticky').each(function(){
+    $(this).sticky({
+       context : $(this).parent(".editor")
+    });
+  });
+};
 
 Template.markdown_editor.helpers({
   selectedImage: function(){

@@ -7,6 +7,7 @@
                 <th class="three wide">Aperçu</th>
                 <th class="three wide">Taille</th>
                 <th class="three wide">Dernière modif.</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -16,6 +17,11 @@
                 <td><img style="width: 50px" class="img-responsive" src="{{ this.url }}"></td>
                 <td>{{ this.size }}</td>
                 <td>{{ this.updatedAt }}</td>
+                <td>
+                    <div class="mini ui red button" data-action="remove" data-confirm="Confirmer ?">
+                        Supprimer
+                    </div>
+                </td>
             </tr>
             {{/each}}
             </tbody>
@@ -25,14 +31,17 @@
                 <th colspan="4">
                     <div class="ui right">
                         <div class="ui buttons">
-                            <div class="ui positive right labeled icon button">
+                            <div class="ui positive right labeled icon button" data-upload="file">
                                 Télécharger
                                 <i class="add icon"></i>
+                                <input type="file" style="height:0;width:0;overflow:hidden;">
                             </div>
                             <div class="or"></div>
                             <div class="ui button">
                                 <div id="dropzone" class="dropzone">
-                                    <div style="text-align: center; color: gray;">Glisser un fichier ici pour téléverser.</div>
+                                    <div style="text-align: center; color: gray;">Glisser un fichier ici pour
+                                        téléverser.
+                                    </div>
                                 </div>
                             </div>
                         </div>

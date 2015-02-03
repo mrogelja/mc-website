@@ -10,7 +10,7 @@ Images.allow({
     return !!userId; //(userId === doc.metadata.owner);
   },
   remove: function(userId, doc) {
-    return false;
+    return !!userId;
   },
   download: function(userId) {
     return !!userId;

@@ -1,6 +1,6 @@
 <template name="markdown_editor">
     <div class="editor">
-        <div class="shortcuts ui icon menu">
+        <div class="shortcuts ui top sticky icon menu">
             <a class="item"><i class="italic icon" data-do="italic"></i></a>
             <a class="item"><i class="bold icon" data-do="bold"></i></a>
             <a class="item"><i class="strikethrough icon" data-do="strikethrough"></i></a>
@@ -15,7 +15,7 @@
 
         <textarea id="t">{{ data }}</textarea>
 
-        <div id="image-modal" class="ui modal">
+        <div id="image-modal" class="ui modal fullscreen">
             <i class="close icon"></i>
 
             <div class="header">
