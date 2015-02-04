@@ -8,8 +8,6 @@ Router.onBeforeAction(function() {
     this.state.set('page', page);
   }
 
-  Session.set("page_editable", false);
-
   this.next();
 });
 

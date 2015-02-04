@@ -19,11 +19,6 @@ Template.markdown_editor.rendered = function() {
   });
 };
 
-Template.markdown_editor.helpers({
-  selectedImage: function(){
-    return !!Session.get("selected_image");
-  }
-});
 
 Template.markdown_editor.events({
   "click .shortcuts .icon" : function(event, tmpl){

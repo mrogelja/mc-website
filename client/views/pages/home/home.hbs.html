@@ -1,0 +1,11 @@
+<template name="home">
+    <div class="page home">
+        <div class="cover">
+          {{> page_element pageId=page._id key='elements.cover' data=page.elements.cover type='image'}}
+        </div>
+
+        <div class="presentation">
+          {{> page_element pageId=page._id key='elements.presentation' data=page.elements.presentation type='rte'}}
+        </div>
+    </div>
+</template>

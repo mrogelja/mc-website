@@ -9,6 +9,16 @@ Template.basicLayout.rendered = function(){
       Session.set("nav_underline_width", selectedAnchor.width() + "px");
       Session.set("nav_underline_left", selectedAnchor.position().left + "px");
     }
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//assets.pinterest.com/js/pinit.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }
+    })(document, "script", "twitter-wjs");
   });
 };
 

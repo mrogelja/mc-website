@@ -1,0 +1,28 @@
+@import "../../stylesheets/util/lesshat.import.less";
+
+.page-element {
+  position: relative;
+
+  &[contenteditable="true"] {
+    border: #fff788 solid 1px;
+  }
+
+  .ui.image {
+    display: block;
+    position: relative;
+
+    .ui.input {
+      position: absolute;
+      top: -20px;
+      width: calc(~"100% + 6px");
+      margin-left: -3px;
+      .box-shadow(0 2px 5px -2px #ddd);
+    }
+  }
+
+  .editor {
+    .shortcuts {
+      display: block;
+    }
+  }
+}

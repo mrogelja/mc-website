@@ -18,7 +18,16 @@
 <template name="realisation_thumb">
     <li class="realisation-thumb {{#if selected}}selected{{/if}} {{#if span}}span-{{span}}{{/if}}"
         data-realisation="{{ _id }}">
-        <img class="thumb" src="{{ img }}">
+        <figure class="wrapper">
+            <img class="thumb" src="{{ img }}">
+            <figcaption>
+                <div class="title">
+                    <div class="inner">
+                      {{ title }}
+                    </div>
+                </div>
+            </figcaption>
+        </figure>
     </li>
 </template>
 

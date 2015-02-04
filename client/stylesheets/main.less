@@ -186,11 +186,6 @@ section {
     }
   }
 
-  *[contenteditable="true"]{
-    border: #fff788 solid 1px;
-    min-height: 1.2em;
-  }
-
   .img-responsive{
     width: 100%;
     height: auto;
@@ -201,5 +196,42 @@ section {
 footer {
   clear: both;
   background: @footer-bg-color;
-  min-height: 200px;
+  color: #e5e5e5;
+
+  a, a:hover{
+    color: #cbcbcb;
+  }
+
+  .upper{
+    min-height: 100px;
+    text-align: center;
+
+    nav{
+      font-size: 1.5em;
+      a{
+        line-height: 100px;
+        font-variant: small-caps;
+      }
+    }
+  }
+
+  .lower{
+    .caption{
+      font-variant: small-caps;
+      padding-bottom: 20px;
+      display: block;
+    }
+    min-height: 100px;
+    text-align: center;
+  }
+
+  .copyright{
+    margin-top: 100px;
+    text-align: center;
+    line-height: 60px;
+
+    .heart{
+      color: rgb(242, 134, 134);
+    }
+  }
 }

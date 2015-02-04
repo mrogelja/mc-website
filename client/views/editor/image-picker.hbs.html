@@ -1,0 +1,33 @@
+<template name="image_picker">
+    <div id="{{ modalId }}" class="ui modal fullscreen image-picker">
+        <i class="close icon"></i>
+
+        <div class="header">
+            Gestionnaire d'images
+        </div>
+
+        <div class="content">
+            <div class="step one">
+                <h3>1. Sélectionner l'image </h3>
+              {{> filesystem }}
+            </div>
+
+            <div class="step two">
+                <h3>2. Entrer un titre </h3>
+                <div class="ui form">
+                    <input type="text" placeholder="Le titre qui servira pour le référencement..." name="image_alt">
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <div class="ui negative button">
+                Annuler
+            </div>
+            <div class="ui positive right labeled {{#unless selectedImage}} disabled {{/unless}} icon button">
+                Sélectionner
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+</template>

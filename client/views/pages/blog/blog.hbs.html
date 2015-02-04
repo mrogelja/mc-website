@@ -21,9 +21,26 @@
             <i class="icon sun"></i>
         </div>
 
-        <div class="thumb" style="background-image: url('{{ img }}')"></div>
         <div class="title">{{ title }}</div>
-        <div class="resume">{{ resume }}</div>
+
+        <div class="thumb-wrapper">
+            <div class="thumb" style="background-image: url('{{ img }}')"></div>
+
+            <figcaption>
+                <div class="resume">
+                    <div class="inner">
+                      {{ resume }}
+                    </div>
+                </div>
+            </figcaption>
+        </div>
+
+
+        {{#if $last }}
+            <div class="separator">
+                <i class="icon sun"></i>
+            </div>
+        {{/if}}
     </li>
 </template>
 

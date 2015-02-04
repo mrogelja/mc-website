@@ -33,9 +33,9 @@
                 <li id="navBlog">
                     <a href="{{pathFor route='blog'}}">Blog</a>
                 </li>
-                <li id="navContact">
-                    <a href="{{pathFor route='contact'}}">Contact</a>
-                </li>
+                <!--<li id="navContact">-->
+                    <!--<a href="{{pathFor route='contact'}}">Contact</a>-->
+                <!--</li>-->
                 {{#if currentUser }}
                 <li id="navContact">
                     <a href="/admin">Admin</a>
@@ -59,9 +59,9 @@
             <div class="tools">
                 {{#if currentUser}}
                     {{#if pageEditable }}
-                    <i class="icon unlock" data-page-stopedit=""></i>
+                    <i class="icon unlock" data-page-stopedit="" title="Éditer"></i>
                     {{else}}
-                    <i class="icon lock" data-page-edit=""></i>
+                    <i class="icon lock" data-page-edit="" title="Fin d'édition"></i>
                     {{/if}}
                 {{/if}}
             </div>
@@ -74,6 +74,22 @@
     </section>
 
     <footer>
+        <div class="upper">
+            <nav>
+                <a href="/admin"><i class="lock icon"></i></a>
+            </nav>
+        </div>
 
+        <div class="lower">
+             <span class="caption">Visitez également :</span>
+             <nav>
+                 <a data-pin-do="embedUser" href="http://www.pinterest.com/Nunkietorion" data-pin-scale-height="80" data-pin-board-width="400"></a>
+             </nav>
+        </div>
+
+        <div class="copyright">
+            Développé avec <i class="heart icon"></i> par <a href="http://hello.m4mc.fr" target="_blank">Mathieu Rogelja</a>.
+            Propulsé par <a href="https://www.meteor.com/" target="_blank">Meteor</a>.
+        </div>
     </footer>
 </template>

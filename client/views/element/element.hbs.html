@@ -1,0 +1,31 @@
+<template name="page_element">
+  {{#unless pageEditable }}
+    {{#if rte}}
+      {{#markdown}} {{{ data }}} {{/markdown}}
+    {{else}}
+      {{#if image}}
+          <img src="{{ data }}">
+      {{else}}
+        {{ data }}
+      {{/if }}
+    {{/if }}
+  {{else}}
+      <div class="page-element" contenteditable="true" data-type="{{ type }}">
+        {{#if rte}}
+          {{> markdown_editor data=data }}
+        {{else}}
+          {{#if image}}
+              <div class="ui image">
+                  <a class="ui left yellow corner label" data-changeimage="true" data-modal="#{{ imagePickerId }}">
+                      <i class="save icon"></i>
+                      {{> image_picker modalId=imagePickerId }}
+                  </a>
+                  <img src="{{#if data}}{{ data }}{{else}}/images/wireframe/dummy.png{{/if}}">
+              </div>
+          {{else}}
+            {{ data }}
+          {{/if }}
+        {{/if }}
+      </div>
+  {{/unless}}
+</template>
