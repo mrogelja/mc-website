@@ -33,7 +33,7 @@ Template.filesystem.events({
         break;
     }
   },
-  'dropped #dropzone': function(event) {
+  'dropped .dropzone': function(event) {
     FS.Utility.eachFile(event, function(file) {
       Images.insert(file);
     });

@@ -20,7 +20,7 @@
                       <i class="save icon"></i>
                       {{> image_picker modalId=imagePickerId }}
                   </a>
-                  <img src="{{#if data}}{{ data }}{{else}}/images/wireframe/dummy.png{{/if}}">
+                  <img class="dropzone-image" src="{{#if data}}{{ data }}{{else}}/images/wireframe/dummy.png{{/if}}">
               </div>
           {{else}}
             {{ data }}

@@ -56,5 +56,25 @@ Template.block_element.events({
          Session.set("selected_image", false);
        }
      }).modal('show');
+   },
+
+   "dropped .dropzone-image" : function(event){
+     var $this = this;
+
+     FS.Utility.eachFile(event, function(file) {
+       Images.insert(file, function (err, fileObj) {
+         var cursor = Images.find(fileObj._id);
+
+         var liveQuery = cursor.observe({
+           changed: function(newImage, oldImage) {
+             if (newImage.isUploaded()) {
+               liveQuery.stop();
+
+               Meteor.call($this.updateMethod, $this.blockId, $this.key, newImage.url({brokenIsFine: true}));
+             }
+           }
+         });
+       });
+     });
    }
 });
