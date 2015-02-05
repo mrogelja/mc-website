@@ -1,5 +1,7 @@
 Images = new FS.Collection("images", {
-  stores: [new FS.Store.FileSystem("images", {path: "~/upload"})]
+  stores: [new FS.Store.FileSystem("images", {
+    path: typeof process != "undefined" ? process.env.UPLOAD_DIR || "~/upload" : "~/upload"
+  })]
 });
 
 Images.allow({
