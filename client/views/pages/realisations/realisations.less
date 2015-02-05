@@ -229,10 +229,6 @@
   }
 
   &.editing{
-    *[contenteditable="true"]{
-      border: #fff788 solid 1px;
-    }
-
     label.info{
       display: inline-block;
       color: #999;
@@ -244,20 +240,6 @@
 
       @media screen and (max-width: 992px) {
         width: 100%;
-      }
-    }
-
-    .ui.image{
-      position: relative;
-      margin-top: 30px;
-      .ui.form{
-        input{
-          position: absolute;
-          top: -20px;
-          width: calc(~"100% + 6px");
-          margin-left: -3px;
-          .box-shadow(0 2px 5px -2px #ddd);
-        }
       }
     }
   }

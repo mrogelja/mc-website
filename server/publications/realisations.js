@@ -37,9 +37,11 @@ Meteor.methods({
   addRealisation: function(){
     return Realisations.insert({
       title: "Nouvelle réalisation",
+      resume: "Résumé...",
       img: "/images/wireframe/dummy.png",
       img_full: "/images/wireframe/dummy.png",
-      editable: true
+      editable: true,
+      createdAt: new Date()
     });
   },
 

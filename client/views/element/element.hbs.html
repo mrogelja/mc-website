@@ -1,5 +1,5 @@
-<template name="page_element">
-  {{#unless pageEditable }}
+<template name="block_element">
+  {{#unless editable }}
     {{#if rte}}
       {{#markdown}} {{{ data }}} {{/markdown}}
     {{else}}
@@ -10,7 +10,7 @@
       {{/if }}
     {{/if }}
   {{else}}
-      <div class="page-element" contenteditable="true" data-type="{{ type }}">
+      <div class="block-element" contenteditable="true" data-type="{{ type }}">
         {{#if rte}}
           {{> markdown_editor data=data }}
         {{else}}

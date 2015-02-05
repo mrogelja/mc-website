@@ -1,6 +1,10 @@
-Template.page_element.helpers({
-  pageEditable: function(){
-    return Session.get('page_editable');
+Template.block_element.helpers({
+  editable: function(){
+    if (typeof this.editable != "undefined"){
+      return this.editable;
+    } else {
+      return Session.get('page_editable');
+    }
   },
 
   rte : function(){
@@ -12,11 +16,17 @@ Template.page_element.helpers({
   },
 
   imagePickerId: function(){
-    return this.pageId + "-image-picker";
+    return this.blockId + "-image-picker";
   }
 });
 
-Template.page_element.events({
+Template.block_element.rendered = function(){
+  if(!this.data.updateMethod) {
+    throw new Error("Vous devez déclarer le paramètre « updateMethod » ");
+  }
+}
+
+Template.block_element.events({
    "blur [contenteditable='true']" : function(event){
      var value,
        type =  $(event.currentTarget).attr('data-type');
@@ -30,7 +40,7 @@ Template.page_element.events({
        value = $(event.currentTarget).text().trim();
      }
 
-     Meteor.call("updatePage", this.pageId, this.key, value);
+     Meteor.call(this.updateMethod, this.blockId, this.key, value);
    },
    "click [data-changeimage]" : function(event){
      var $this = this;
@@ -40,8 +50,10 @@ Template.page_element.events({
          var image = Images.findOne({_id : Session.get("selected_image")});
 
          if(image){
-           Meteor.call("updatePage", $this.pageId, $this.key, image.getFileRecord().url());
+           Meteor.call($this.updateMethod, $this.blockId, $this.key, image.getFileRecord().url());
          }
+
+         Session.set("selected_image", false);
        }
      }).modal('show');
    }

@@ -52,7 +52,7 @@
         <div id="page-title">
             <h1>
                 <p>
-                    {{> page_element pageId=page._id data=pageTitre key="title" }}
+                    {{> block_element blockId=page._id data=pageTitre key="title" updateMethod="updatePage" }}
                 </p>
             </h1>
 

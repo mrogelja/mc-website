@@ -37,9 +37,11 @@ Meteor.methods({
   addPost: function(){
     return Posts.insert({
       title: "Nouveau billet",
+      resume: "Résumé...",
       img: "/images/wireframe/dummy.png",
       img_full: "/images/wireframe/dummy.png",
-      editable: true
+      editable: true,
+      createdAt: new Date()
     });
   },
 

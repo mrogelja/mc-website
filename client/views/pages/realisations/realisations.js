@@ -54,7 +54,7 @@ Template.realisation.events({
   "click [data-stopedit]" : function(event){
     Meteor.call("setRealisationEditable", this._id, false);
   },
-  "click [data-modal]" : function (event){
+  "click [data-delete]" : function (event){
      var $this = this;
      $($(event.currentTarget).attr('data-modal')).modal({
        onDeny : function() {
@@ -67,21 +67,8 @@ Template.realisation.events({
        }
      }).modal('show');
   },
-  "blur [contenteditable]" : function(event){
-    var value,
-      key = $(event.currentTarget).attr('data-is'),
-      type =  $(event.currentTarget).attr('data-type');
 
-    if (type == 'rte') {
-      value = $(event.currentTarget).find('textarea')[0].value;
-    } else {
-      value = $(event.currentTarget).text().trim();
-    }
-
-    Meteor.call("updateRealisation", this._id, key, value);
-  },
-
-  "change input" : function(event){
+  "change input[data-is]" : function(event){
     var value, key = $(event.currentTarget).attr('data-is');
 
     switch (event.currentTarget.type){
